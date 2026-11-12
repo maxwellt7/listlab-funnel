@@ -21,13 +21,27 @@ export const site = {
 };
 
 /**
- * The VSL embed. Paste the provider's embed snippet here (Wistia, Vimeo, Vidalytics, YouTube…)
- * or set NEXT_PUBLIC_VSL_EMBED_HTML in the environment. Leave empty to show the placeholder.
+ * The landing page VSL, hosted on Vidalytics. Both values come straight from the Vidalytics embed snippet:
  *
- * Example (Vimeo):
- *   '<iframe src="https://player.vimeo.com/video/000000000?badge=0&autopause=0&player_id=0" frameborder="0" allow="autoplay; fullscreen; picture-in-picture" style="position:absolute;top:0;left:0;width:100%;height:100%;" title="ListLab"></iframe>'
+ *   <div id="vidalytics_embed_0PmXFINealUU8RRj" …></div>                       ← embedId is the part after "vidalytics_embed_"
+ *   …})(window, document, 'Vidalytics', 'vidalytics_embed_0PmXFINealUU8RRj',
+ *        'https://fast.vidalytics.com/embeds/Atjoh1F2/0PmXFINealUU8RRj/');     ← baseUrl is this last argument
+ *
+ * To swap the video, change them here or set the two env vars and redeploy. If either is empty or
+ * malformed the page shows a plain dark placeholder instead of a player.
  */
-export const VSL_EMBED_HTML: string = process.env.NEXT_PUBLIC_VSL_EMBED_HTML ?? "";
+export const VSL = {
+  embedId: process.env.NEXT_PUBLIC_VIDALYTICS_EMBED_ID ?? "0PmXFINealUU8RRj",
+  baseUrl: process.env.NEXT_PUBLIC_VIDALYTICS_BASE_URL ?? "https://fast.vidalytics.com/embeds/Atjoh1F2/0PmXFINealUU8RRj/",
+};
 
-/** Aspect ratio of the VSL container. 16/9 for landscape video. */
-export const VSL_ASPECT = "16 / 9";
+/**
+ * Where every Apply button on the landing page goes ("Apply to see the deal", "Start the 2-minute application").
+ *
+ * The default is the link from the reviewed page draft. It opens ListLab's "Investor Meet & Greet" calendar in
+ * GoHighLevel. To send people to this funnel's own application instead, set NEXT_PUBLIC_APPLY_URL=/apply.
+ * An external URL opens in a new tab; a path on this site opens in the same tab. UTM and click-id parameters
+ * on the landing page URL are carried over to it either way.
+ */
+export const APPLY_URL: string =
+  process.env.NEXT_PUBLIC_APPLY_URL || "https://api.leadconnectorhq.com/widget/booking/M1eqdYB2kSxkqkYXY7Ry";
