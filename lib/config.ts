@@ -36,7 +36,7 @@ export const VSL = {
 };
 
 /**
- * Where every Apply button on the landing page goes ("Apply to see the deal", "Start the 2-minute application").
+ * Where every button on the landing page goes.
  *
  * The default is the link from the reviewed page draft. It opens ListLab's "Investor Meet & Greet" calendar in
  * GoHighLevel. To send people to this funnel's own application instead, set NEXT_PUBLIC_APPLY_URL=/apply.
@@ -45,3 +45,32 @@ export const VSL = {
  */
 export const APPLY_URL: string =
   process.env.NEXT_PUBLIC_APPLY_URL || "https://api.leadconnectorhq.com/widget/booking/M1eqdYB2kSxkqkYXY7Ry";
+
+/**
+ * What the buttons say, and what step one of "what happens next" is.
+ *
+ * Counsel's review of 2026-11-13 (LP-07, LP-08): a button that opens a calendar has to be labeled as scheduling
+ * a screening call, not as an application, and the page's steps have to match what actually happens. So the
+ * wording follows the destination: a booking-calendar link gets the "schedule a call" wording; anything else
+ * (this site's /apply, or another application form) keeps the "apply" wording from the 2026-11-09 draft.
+ * NEXT_PUBLIC_APPLY_MODE=booking or =application overrides the guess if the link type isn't obvious from the URL.
+ */
+const mode = (process.env.NEXT_PUBLIC_APPLY_MODE ?? "").toLowerCase();
+export const APPLY_IS_BOOKING: boolean =
+  mode === "booking" || (mode !== "application" && /\/widget\/booking\/|calendly\.com|\/booking\b/i.test(APPLY_URL));
+
+export const CTA = APPLY_IS_BOOKING
+  ? {
+      button: "Schedule a screening call",
+      start: "Pick a time for the call",
+      step1: { title: "Schedule a call", body: "Pick a time for a 30-minute screening call with the company." },
+      step2When: "At the time you pick",
+      notSure: "schedule the call anyway; the company will walk you through it.",
+    }
+  : {
+      button: "Apply to see the deal",
+      start: "Start the 2-minute application",
+      step1: { title: "Apply", body: "A few questions about who you are and what you're looking for." },
+      step2When: "In a couple of days",
+      notSure: "apply anyway; the application walks you through it.",
+    };

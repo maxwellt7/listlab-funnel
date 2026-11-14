@@ -16,9 +16,11 @@ Nothing ever blocks the visitor: if the database or GHL is down, the error is lo
 
 ## The landing page
 
-The copy in `app/(max)/page.tsx` is the counsel-review draft of 2026-11-09, word for word, footnotes included.
-Treat it as reviewed text: change wording, numbers or dates only when the reviewed copy changes. Footnote 1
-states Max's pay to date and its "through" date, so it has to be updated whenever either moves.
+The copy in `app/(max)/page.tsx` is the counsel-review draft of 2026-11-09 with counsel's line edits of
+2026-11-13 applied (headline, the header disclosure, the return and "upside" lines, both FAQ answers, the
+Rule 506(c) legend by the first button, footnote 1), footnotes included. Treat it as reviewed text: change
+wording, numbers or dates only when the reviewed copy changes. Footnote 1 states Max's pay to date and its
+"through" date (November 13, 2026), so it has to be updated whenever either moves.
 
 The page has its own root layout, fonts and stylesheet (`app/(max)/`) and shares nothing visual with the
 application pages (`app/(funnel)/`, Tailwind + the ListLab design system). Going from one to the other is a
@@ -31,6 +33,16 @@ normal page load.
 - Default: the link from the reviewed draft, which opens ListLab's "Investor Meet & Greet" calendar in GoHighLevel.
 - `NEXT_PUBLIC_APPLY_URL=/apply` sends people to this funnel's own application instead. Before using it, add the
   `GHL_*` env vars (step 3–4 under Deploy); without them applications are stored in Postgres but never reach GHL.
+
+The button wording follows the destination (`CTA` in `lib/config.ts`), because counsel asked that a button
+which opens a calendar say so:
+
+- a booking-calendar link (the default) → "Schedule a screening call" / "Pick a time for the call", and step one
+  of "what happens next" is scheduling the call;
+- `/apply` or any other form → "Apply to see the deal" / "Start the 2-minute application", and step one is the
+  application.
+
+`NEXT_PUBLIC_APPLY_MODE=booking` or `=application` overrides the guess when the URL doesn't make it obvious.
 
 UTM parameters and click ids (`utm_*`, `fbclid`, `gclid`, `ref`) on the landing page URL are appended to the
 Apply link, so the ad source survives the hand-off.

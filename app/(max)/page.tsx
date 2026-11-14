@@ -2,18 +2,22 @@ import { ApplyLink } from "@/components/max/ApplyLink";
 import { Person } from "@/components/max/Person";
 import { ShortVersion } from "@/components/max/ShortVersion";
 import { VslPlayer } from "@/components/max/VslPlayer";
-import { site } from "@/lib/config";
+import { CTA, site } from "@/lib/config";
 
 /**
  * Max's VSL landing page.
  *
- * The copy below is the counsel-review draft of 2026-11-09, word for word, including every footnote and
- * its number. Treat it as reviewed text: change wording, numbers or dates only when the reviewed copy changes
+ * The copy below is the counsel-review draft of 2026-11-09 with counsel's line edits of 2026-11-13 applied
+ * (LP-00 to LP-08 and the three landing-page strings in his cover email), including every footnote and its
+ * number. Treat it as reviewed text: change wording, numbers or dates only when the reviewed copy changes
  * (footnote 1 carries Max's pay to date and its "through" date, so it needs updating when either moves).
+ *
+ * The button labels and the first "what happens next" step come from CTA in lib/config.ts, because they have
+ * to say what the button really opens: a call-booking calendar today, or this site's own application.
  *
  * Three things are wired rather than written here:
  *   - the video            -> components/max/VslPlayer.tsx   (Vidalytics ids in lib/config.ts)
- *   - every Apply button   -> components/max/ApplyLink.tsx   (APPLY_URL in lib/config.ts)
+ *   - every Apply button   -> components/max/ApplyLink.tsx   (APPLY_URL and CTA in lib/config.ts)
  *   - the short-version card and the rail notes beside it -> components/max/ShortVersion.tsx
  */
 export default function MaxLandingPage() {
@@ -25,7 +29,7 @@ export default function MaxLandingPage() {
             <div className="portrait" aria-hidden="true">MM</div>
             <div className="byline-text"><div className="brand">Max Mayes</div> Growth marketer. My campaigns have helped raise $30M+ for other people&apos;s deals: startups, family offices, real estate.</div>
           </div>
-          <p className="upfront head-upfront"><strong>Up front:</strong> the company pays me for marketing work, including this campaign.<a className="fn" href="#fee">1</a> My pay isn&apos;t tied to what they raise. I&apos;ve also invested my own money in this offering. Weigh what I say accordingly.</p>
+          <p className="upfront head-upfront"><strong>Up front:</strong> the company pays me for marketing work, including this campaign.<a className="fn" href="#fee">1</a> My pay isn&apos;t tied to what they raise. I am also an investor in this offering, which may create a conflict of interest. Weigh what I say accordingly.</p>
         </div>
       </header>
       {/* HERO: the rant (slow lane, left) + why-I-said-yes card (fast lane, right) */}
@@ -33,16 +37,17 @@ export default function MaxLandingPage() {
         <div className="wrap hero-grid">
           <div>
             <div className="eyebrow">My take on investing</div>
-            <h1>Right now, nothing looks good. <em>Except this.</em></h1>
-            <p className="lede">I see a lot of pitches, and lately I&apos;ve been passing on almost all of them. Here&apos;s why, and one deal I did put my own money into.</p>
+            <h1>I&apos;ve been passing on almost everything. <em>Here&apos;s the rare deal I still wrote a check for</em> <span className="h1-risk">(knowing it can go to zero).</span></h1>
+            <p className="lede">I see a lot of pitches, and right now almost nothing looks good to me. Here&apos;s why, and one deal I did put my own money into.</p>
             <VslPlayer />
             <div className="cta-row hero-cta">
-              <ApplyLink className="btn btn-primary">Apply to see the deal</ApplyLink>
+              <ApplyLink className="btn btn-primary">{CTA.button}</ApplyLink>
               <div className="cta-notes">
-                <b>You don&apos;t need a big check to participate.</b>
+                <b>The current minimum is $10,000 (subject to change). Only invest what you can afford to lose.</b>
                 <a className="qualify-link" href="#qualify">Not sure you qualify? Here&apos;s what it takes.</a>
               </div>
             </div>
+            <p className="legend-506c"><b>PRIVATE PLACEMENT — ACCREDITED INVESTORS ONLY.</b> This is a general solicitation under Rule 506(c). Securities are sold only to verified accredited investors. Investing involves risk, including possible loss of principal. This is not an offer where unlawful. Full offering documents (including the PPM) are available only after an NDA.</p>
           </div>
           {/* FAST LANE: why it got my attention, for the reader who scans */}
           <ShortVersion>
@@ -56,7 +61,7 @@ export default function MaxLandingPage() {
               </li>
               <li>
                 <h3>If it works, it could be big.</h3>
-                <p>Most deals I see are built to do fine – maybe 10–12% IRR; this one could deliver multiples – the kind of outcome that changes when I get to retire.<a className="fn" href="#cn-2">2</a> The product hasn&apos;t been revealed yet, it&apos;s still in stealth, so I believe <b>most of the upside is still ahead.</b></p>
+                <p>Most deals I see are built to do fine – often the kind of mid-teens (or lower) outcomes people quote as &quot;good.&quot; In my opinion, if this team executes, the upside could be far larger than those ordinary deals – and early-stage deals can also go to zero.<a className="fn" href="#cn-2">2</a> The product hasn&apos;t been revealed yet – it&apos;s still in stealth – so any upside, if it materializes at all, is <b>still speculative and unproven.</b></p>
               </li>
               <li>
                 <h3>Open to you, and it shouldn&apos;t be.</h3>
@@ -93,11 +98,11 @@ export default function MaxLandingPage() {
               <div className="cm"><b>Early and bigger checks may get more.</b> Under the company&apos;s planned terms, moving first or writing larger may come with better terms.<a className="fn" href="#cn-8">8</a></div>
             </div>
             <div className="card-cta">
-              <ApplyLink className="btn btn-primary">Apply to see the deal</ApplyLink>
-              <b>You don&apos;t need a big check to participate.</b>
+              <ApplyLink className="btn btn-primary">{CTA.button}</ApplyLink>
+              <b>The current minimum is $10,000 (subject to change). Only invest what you can afford to lose.</b>
             </div>
             <ol className="card-notes" start={2}>
-              <li id="cn-2">Speaker&apos;s opinion. 10–12% IRR describes other deals generally and isn&apos;t a projection for this one. Early-stage investments can lose everything.</li>
+              <li id="cn-2">Speaker&apos;s opinion. &quot;Mid-teens&quot; describes outcomes other deals commonly quote and isn&apos;t a projection for this one. Early-stage investments can lose everything.</li>
               <li id="cn-3">People who interacted with the company and asked to hear more, as of the week of Sep 29, 2026. Few, if any, have seen the product, and they aren&apos;t paying customers.</li>
               <li id="cn-4">Best campaign to date, not the average; other campaigns cost more. Results after launch may differ materially, and costs could be significantly higher.</li>
               <li id="cn-5">All-industry averages from WordStream by LocaliQ&apos;s 2025 benchmarks. Their &quot;lead&quot; is defined differently from a Pre-Product User, so the comparison is approximate.</li>
@@ -180,7 +185,7 @@ export default function MaxLandingPage() {
             <p>A very specific thesis. I&apos;m looking for a deal that does two things at once:</p>
             <ol>
               <li><b>It holds up regardless of what the economy does</b>, or at least better than most.</li>
-              <li><b>It could pay off in a big way if it works.</b> Not 10–12% a year. Multiples.</li>
+              <li><b>It could pay off in a big way if it works.</b></li>
             </ol>
             <p>Most deals give me one or the other, at best. Finding both is a tall order.</p>
             <p>
@@ -225,10 +230,10 @@ export default function MaxLandingPage() {
               <div className="reason">
                 <div>
                   <h3>If it works, it could be big.</h3>
-                  <p>Most deals I see are built to do fine – maybe 10–12% IRR; this one could deliver multiples – the kind of outcome that changes when I get to retire.<a className="fn" href="#fn-irr">9</a> The product hasn&apos;t been revealed yet, it&apos;s still in stealth, so I believe <strong>most of the upside is still ahead.</strong></p>
+                  <p>Most deals I see are built to do fine – often the kind of mid-teens (or lower) outcomes people quote as &quot;good.&quot; In my opinion, if this team executes, the upside could be far larger than those ordinary deals – and early-stage deals can also go to zero.<a className="fn" href="#fn-irr">9</a> The product hasn&apos;t been revealed yet – it&apos;s still in stealth – so any upside, if it materializes at all, is <strong>still speculative and unproven.</strong></p>
                 </div>
               </div>
-              <aside className="reason-more rail-quote">&quot;To me, a good deal doubles my money in six or seven years. This one could do far more.&quot;<small>Why it matters</small></aside>
+              <aside className="reason-more rail-quote">&quot;If this team executes, the upside could be far larger than those ordinary deals – and early-stage deals can also go to zero.&quot;<small>Why it matters</small></aside>
             </div>
             <div className="reason-row">
               <div className="reason">
@@ -348,11 +353,11 @@ export default function MaxLandingPage() {
           <div className="faq">
             <details>
               <summary>You&apos;re paid. Why should I listen to you?</summary>
-              <p>Don&apos;t take my word for it. The company pays me for marketing work, not for what it raises. But I also invested my own money, so I win or lose alongside every other investor. What I can give you is the honest reason I put money in. You should make your own decision after seeing it.</p>
+              <p>Don&apos;t take my word for it. The company pays me for marketing work, not for what it raises. But I also invested my own money, so I have a financial stake – and a conflict of interest – alongside the paid marketing relationship. I win or lose with other investors if the company succeeds or fails. What I can give you is the honest reason I put money in. You should make your own decision after seeing it.</p>
             </details>
             <details>
               <summary>&quot;Pre-launch&quot; sounds like an experiment.</summary>
-              <p>Usually it is. Most early companies raise to find out whether anyone wants the thing. This company has already found more than 10,000 interested people, at as little as $0.05 each, before showing them anything. But because it&apos;s in stealth, there&apos;s no data yet on whether people will actually adopt the product, only a thesis. I believe it&apos;s a good one. That&apos;s the trade: risk and reward are tied together. Get in now and you&apos;re deciding for yourself whether they&apos;ll pull it off, and if they do, the people who took that bet early are the ones it pays off for most.</p>
+              <p>Usually it is. Most early companies raise to find out whether anyone wants the thing. This company has already found more than 10,000 interested people, at as little as $0.05 each, before showing them anything. But because it&apos;s in stealth, there&apos;s no data yet on whether people will actually adopt the product, only a thesis. I believe it&apos;s a good one. That&apos;s the trade: risk and reward are tied together. Applying now only gets you a chance to review materials after verification and an NDA. Earlier entry under the company&apos;s planned terms may involve a lower valuation cap – and earlier investors can still lose everything if the company fails.</p>
             </details>
             <details>
               <summary>Is this safe?</summary>
@@ -371,16 +376,16 @@ export default function MaxLandingPage() {
           <div className="next-row">
             <div className="next-main">
               <ol className="timeline">
-                <li><span className="when">Today · 2 minutes</span><b>Apply</b>A few questions about who you are and what you&apos;re looking for.</li>
-                <li><span className="when">In a couple of days</span><b>Screening call</b>A short call to answer your questions and make sure it&apos;s a fit.</li>
+                <li><span className="when">Today · 2 minutes</span><b>{CTA.step1.title}</b>{CTA.step1.body}</li>
+                <li><span className="when">{CTA.step2When}</span><b>Screening call</b>A short call to answer your questions and make sure it&apos;s a fit.</li>
                 <li><span className="when">After the call</span><b>Sign the NDA</b>If it&apos;s a fit, the company sends it over. Nothing is owed by signing.</li>
                 <li><span className="when">Right after</span><b>See everything</b>The company&apos;s name, the product, the full presentation and the offering documents.</li>
                 <li><span className="when">The next two weeks</span><b>Decide</b>Read it all, ask your questions, talk to your own advisors. Invest or pass.</li>
               </ol>
               <div className="apply-card">
-                <h3>Apply to see the deal</h3>
+                <h3>{CTA.button}</h3>
                 <p>Raising your hand isn&apos;t investing. You don&apos;t even know the company&apos;s name yet. If it&apos;s not a fit, you pass.</p>
-                <ApplyLink className="btn btn-primary">Start the 2-minute application</ApplyLink>
+                <ApplyLink className="btn btn-primary">{CTA.start}</ApplyLink>
               </div>
             </div>
             <div className="qualify in-rail" id="qualify">
@@ -391,7 +396,7 @@ export default function MaxLandingPage() {
                 <li>You&apos;re worth over <b>$1 million</b>, not counting your home, on your own or with a spouse or partner.</li>
                 <li>You hold a <b>Series 7, 65 or 82</b> license.</li>
               </ul>
-              <p>If one of those fits, you likely qualify. If you&apos;re not sure, apply anyway; the application walks you through it. If you move forward, the company will verify it, as the law requires.</p>
+              <p>If one of those fits, you likely qualify. If you&apos;re not sure, {CTA.notSure} If you move forward, the company will verify it, as the law requires.</p>
             </div>
           </div>
         </div>
@@ -408,7 +413,7 @@ export default function MaxLandingPage() {
             <strong>I&apos;d rather people look and pass than hear about it after the cap has moved.</strong>
           </p>
           <div className="cta-row" style={{ marginTop: "22px" }}>
-            <ApplyLink className="btn btn-primary">Apply to see the deal</ApplyLink>
+            <ApplyLink className="btn btn-primary">{CTA.button}</ApplyLink>
           </div>
         </div>
       </section>
@@ -446,8 +451,8 @@ export default function MaxLandingPage() {
           <p>This page is not an offer to sell, or a solicitation of an offer to buy, any security in any jurisdiction where that would be unlawful. Offers will be made only through the Company&apos;s confidential offering documents, including its private placement memorandum and subscription agreement (the &quot;Offering Documents&quot;), which qualify this page in its entirety. If anything here conflicts with the Offering Documents, the Offering Documents control.</p>
           <p>The Securities have not been registered under the Securities Act of 1933 or any state securities law.</p>
           <p>Statements about the Company&apos;s demand, growth, markets, pricing or prospects are forward-looking. They reflect management&apos;s current beliefs and are subject to risks that could cause actual results to differ materially. No one can assure that demand for the Company&apos;s product will exist or continue under any economic condition. The Company undertakes no obligation to update them.</p>
-          <p id="fee"><sup>1</sup> Max Mayes is paid by the Company for marketing services, including producing and appearing in the video on this page (a fixed fee of $500). Through November 9, 2026, the Company has paid him $12,500 in all. None of his compensation is based on the amount of capital raised. He has invested his own money in this offering, so he benefits if the Company does well. Because he is paid by the Company and has invested in this offering, he has a conflict of interest, and his views may be biased. Marketing relationships change; the scope of his role, his compensation and his investment may change, and any change will be disclosed. He does not negotiate or discuss offering terms with investors; descriptions of offering terms on this page are the Company&apos;s planned terms. References to his prior marketing results do not indicate results for this offering. Opinions on this page about markets and asset classes are his own. References to other persons or companies are for illustration only and do not imply affiliation or endorsement.</p>
-          <p id="fn-irr"><sup>9</sup> Speaker&apos;s opinion. References to typical returns (such as a 10–12% IRR) describe other deals generally and are not a projection for this offering. Early-stage investments can lose their entire value.</p>
+          <p id="fee"><sup>1</sup> Max Mayes is paid by the Company for marketing services, including producing and appearing in the video on this page (a fixed fee of $500). Through November 13, 2026, the Company has paid him $12,500 in all. None of his compensation is based on the amount of capital raised. He has invested his own money in this offering, so he benefits if the Company does well. Because he is paid by the Company and has invested in this offering, he has a conflict of interest, and his views may be biased. Marketing relationships change; the scope of his role, his compensation and his investment may change, and any change will be disclosed. He does not negotiate or discuss offering terms with investors; descriptions of offering terms on this page are the Company&apos;s planned terms. Max provides marketing and endorsement services only. He is not a broker-dealer or finder, does not receive transaction-based compensation, does not handle investor funds or subscription agreements, and does not provide personalized investment advice. References to prior marketing results (including campaigns that have helped others raise $30M+) describe marketing work for other people&apos;s deals – not securities brokerage – and do not indicate results for this offering. Opinions on this page about markets and asset classes are his own. References to other persons or companies are for illustration only and do not imply affiliation or endorsement.</p>
+          <p id="fn-irr"><sup>9</sup> Speaker&apos;s opinion. References to typical returns (such as mid-teens outcomes) describe other deals generally and are not a projection for this offering. Early-stage investments can lose their entire value.</p>
           <p id="fn-bench"><sup>12</sup> Benchmarks are all-industry averages from WordStream by LocaliQ&apos;s 2025 reports: about $27.66 per lead for Facebook lead campaigns and $70.11 per lead for Google Ads (U.S. campaigns, April 2024–March 2025). A Pre-Product User is defined differently from a &quot;lead&quot; in those reports, so the comparison is approximate. The Company&apos;s $0.05 is its best campaign to date, not an average, and costs after launch may be materially higher.</p>
           <p id="fn-terms"><sup>14</sup> Describes the Company&apos;s planned terms: SAFEs with valuation caps that step up by tranche as capital is raised. The Company may change the caps, tranche sizes, structure or minimum at any time before a closing. A valuation cap is an offering term, not a valuation, and a lower cap is not a gain. Final terms are set only in the Offering Documents.</p>
           <p id="fn-safe"><sup>15</sup> Each SAFE is negotiated separately; better terms for earlier or larger checks are not guaranteed. Terms for individual investors, including those already in the round, may differ.</p>
