@@ -20,7 +20,7 @@ The copy in `app/(max)/page.tsx` is the counsel-review draft of 2026-11-09 with 
 2026-11-13 applied (headline, the header disclosure, the return and "upside" lines, both FAQ answers, the
 Rule 506(c) legend by the first button, footnote 1), footnotes included. Treat it as reviewed text: change
 wording, numbers or dates only when the reviewed copy changes. Footnote 1 states Max's pay to date and its
-"through" date (November 19, 2026), so it has to be updated whenever either moves.
+"through" date (November 20, 2026), so it has to be updated whenever either moves.
 
 The page has its own root layout, fonts and stylesheet (`app/(max)/`) and shares nothing visual with the
 application pages (`app/(funnel)/`, Tailwind + the ListLab design system). Going from one to the other is a
