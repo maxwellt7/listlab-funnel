@@ -37,7 +37,7 @@ export default function MaxLandingPage() {
         <div className="wrap hero-grid">
           <div>
             <div className="eyebrow">My take on investing</div>
-            <h1>I&apos;ve been passing on almost everything. <em>Here&apos;s the rare deal I still wrote a check for</em> <span className="h1-risk">(knowing it can go to zero).</span></h1>
+            <h1>I&apos;ve been passing on almost everything. <em>Here&apos;s the rare deal I still put money into</em> <span className="h1-risk">(knowing it can go to zero).</span></h1>
             <p className="lede">I see a lot of pitches, and right now almost nothing looks good to me. Here&apos;s why, and one deal I did put my own money into.</p>
             <VslPlayer />
             <div className="cta-row hero-cta">
@@ -353,7 +353,7 @@ export default function MaxLandingPage() {
           <div className="faq">
             <details>
               <summary>You&apos;re paid. Why should I listen to you?</summary>
-              <p>Don&apos;t take my word for it. The company pays me a flat consulting fee that doesn&apos;t depend on the amount it raises. But I also invested my own money, so I have a financial stake – and a conflict of interest – alongside the paid relationship. I win or lose if the company succeeds or fails. What I can give you is the honest reason I put money in. You should make your own decision after seeing it.</p>
+              <p>Don&apos;t take my word for it. The company pays me a flat consulting fee that doesn&apos;t depend on the amount it raises, and I appear in company-paid creatives. But I also invested my own money, so I have a financial stake – and a conflict of interest – alongside the paid relationship. I win or lose if the company succeeds or fails. What I can give you is the reason I put money in. You should make your own decision after seeing it.</p>
             </details>
             <details>
               <summary>&quot;Pre-launch&quot; sounds like an experiment.</summary>
